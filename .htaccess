@@ -1,0 +1,66 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # General
+
+    RewriteRule ^index$ index.php [L]
+    RewriteRule ^gallery$ /ObanshireCubScouts/pages/gallery.php [L]
+    RewriteRule ^login$ /ObanshireCubScouts/pages/login.php [L]
+    RewriteRule ^register$ /ObanshireCubScouts/pages/register.php [L]
+    RewriteRule ^events$ /ObanshireCubScouts/pages/events.php [L]
+    RewriteRule ^contact$ /ObanshireCubScouts/pages/contact.php [L]
+    RewriteRule ^badges$ /ObanshireCubScouts/pages/badges.php [L]
+    RewriteRule ^games$ /ObanshireCubScouts/pages/games.php [L]
+    RewriteRule ^disclosure$ /ObanshireCubScouts/pages/disclosure.php [L]
+    RewriteRule ^logo$ /ObanshireCubScouts/assets/Images/Logo.png [L]
+    RewriteRule ^helpers$ /ObanshireCubScouts/pages/helpers.php [L]
+
+
+    # Leader
+
+    RewriteRule ^leaderindex$ /ObanshireCubScouts/pages/leader/leaderindex.php [L]
+    RewriteRule ^leaderusers$ /ObanshireCubScouts/pages/leader/dashboard/leaderusers.php [L]
+    RewriteRule ^leaderimages$ /ObanshireCubScouts/pages/leader/dashboard/leaderimages.php [L]
+    RewriteRule ^leaderbadges$ /ObanshireCubScouts/pages/leader/dashboard/leaderbadges.php [L]
+    RewriteRule ^leaderhelpers$ /ObanshireCubScouts/pages/leader/dashboard/leaderhelpers.php [L]
+    RewriteRule ^edituser/([0-9]+)$ /ObanshireCubScouts/pages/leader/dashboard/leadereditusers.php?user_id=$1 [L]
+   
+    # Scouts
+
+    RewriteRule ^scoutindex$ /ObanshireCubScouts/pages/scouts/scoutindex.php [L]
+    RewriteRule ^scoutbadges$ /ObanshireCubScouts/pages/scouts/scoutbadges.php [L]
+   
+    # Helpers
+
+    RewriteRule ^helperindex$ /ObanshireCubScouts/pages/helper/helperindex.php [L]
+    RewriteRule ^helperdashboard$ /ObanshireCubScouts/pages/helper/helperdashboard.php [L]
+    RewriteRule ^training$ /ObanshireCubScouts/pages/helper/training.php [L]
+    RewriteRule ^helpercubprogress$ /ObanshireCubScouts/pages/helper/helpercubprogress.php [L]
+
+    # Shared
+
+    RewriteRule ^shareduploadimages$ /ObanshireCubScouts/pages/shared/shareduploadimages.php [L]
+
+    # Config
+
+    RewriteRule ^approvepicture$ /ObanshireCubScouts/account/config/approve_picture.php [L]
+    RewriteRule ^deletepicture$ /ObanshireCubScouts/account/config/delete_picture.php [L]
+    RewriteRule ^active/([0-9]+)$ /ObanshireCubScouts/account/config/active_user.php?user_id=$1 [L]
+    RewriteRule ^inactive/([0-9]+)$ /ObanshireCubScouts/account/config/inactive_user.php?user_id=$1 [L]
+    RewriteRule ^deleteuser/([0-9]+)$ /ObanshireCubScouts/account/config/delete_user.php?user_id=$1 [L]
+    RewriteRule ^updateuser/([0-9]+)$ /ObanshireCubScouts/account/config/update_user.php?user_id=$1 [L]
+    RewriteRule ^edituserhelper/([0-9]+)$ /ObanshireCubScouts/account/config/update_details_helper.php?user_id=$1 [L]
+    
+
+   
+    # Javascript
+
+    RewriteRule ^javascript$ /ObanshireCubScouts/assets/JavaScript/main.js [L]
+
+    # Styles
+
+    RewriteRule ^styles$ /ObanshireCubScouts/assets/CSS/styles.css [L]
+
+
+
+</IfModule>
