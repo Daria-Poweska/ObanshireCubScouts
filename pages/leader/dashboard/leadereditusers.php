@@ -93,6 +93,6 @@ include '../../../partials/navbarforlogged.php';
             </div>
         </section>
     </div>
-</main>
+
 
 <?php include '../../../partials/footer.php'; ?>

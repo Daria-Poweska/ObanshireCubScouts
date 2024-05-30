@@ -1,7 +1,6 @@
 // JavaScript //
 
 document.addEventListener("DOMContentLoaded", () => {
-  
   // Sticky header on scroll
 
   const selectHeader = document.querySelector("#header");
@@ -48,4 +47,44 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  //  MODALS Badges
+  const readMoreBtns = document.querySelectorAll(".read-more");
+
+readMoreBtns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const cardBody = this.closest(".card-body");
+    const cardTitle = cardBody.querySelector(".card-title").textContent;
+    const modalId = this.getAttribute('data-bs-target').replace('#', '');
+    const badgeModal = new bootstrap.Modal(document.getElementById(modalId), {});
+    const modalTitle = document.getElementById(modalId).querySelector(".modal-title");
+    const modalText = document.getElementById(modalId).querySelector(".modal-body .textmodal");
+
+    modalTitle.textContent = cardTitle;
+
+    const modalTextElement = document.querySelector(`.modal-body .textmodal[data-card-title="${cardTitle}"]`);
+    if (modalTextElement) {
+      modalText.textContent = modalTextElement.textContent;
+    } else {
+      modalText.textContent = "Modal text not found for this card.";
+    }
+
+    badgeModal.show();
+  });
+});
+
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.addEventListener('hidden.bs.modal', () => {
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+    document.body.style.overflow = 'auto';
+  });
+});
+
+
+
+  
+  
 });

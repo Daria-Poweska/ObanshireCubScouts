@@ -164,7 +164,7 @@ include '../../../partials/navbarforlogged.php';
                                 </select>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Assign Badge</button>
+                            <button type="submit" class='btn-join-us-square'>Assign Badge</button>
                         </form>
                     </div>
                 </div>
@@ -172,5 +172,5 @@ include '../../../partials/navbarforlogged.php';
       
         </section>
     </div>
-</main>
+
 <?php include '../../../partials/footer.php'; ?>

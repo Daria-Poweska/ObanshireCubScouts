@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userType = $_POST['userType'];
     $name = $_POST['name'];
     $surname = $_POST['surname'];
+    $disclosureNumber = isset($_POST['disclosure_number']) ? $_POST['disclosure_number'] : null;
 
     if ($stmt = $conn->prepare('SELECT user_id FROM users WHERE username = ? OR email = ?')) {
       $stmt->bind_param('ss', $username, $email);
@@ -20,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $stmt->store_result();
 
       if ($stmt->num_rows > 0) {
-        // Check if the username or email already exists
         $stmt->bind_result($existingUserId);
         $stmt->fetch();
         if ($existingUserId) {
@@ -31,14 +31,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-   
         if ($stmt = $conn->prepare("INSERT INTO users (username, email, password, user_type, name, surname) VALUES (?, ?, ?, ?, ?, ?)")) {
           $stmt->bind_param("ssssss", $username, $email, $hashed_password, $userType, $name, $surname);
           if ($stmt->execute()) {
-            $_SESSION['success_message'] = 'You have successfully created an account. <a href="' . BASE_URL . 'login">Return to Login page <br></a>';
+            $userId = $stmt->insert_id;
+
+            // Insert into helperdetails if userType is helper
+            if ($userType == 'helper') {
+              $query2 = "INSERT INTO helperdetails (user_id, disclosure_number) VALUES (?, ?)";
+              $stmt2 = $conn->prepare($query2);
+              $stmt2->bind_param("is", $userId, $disclosureNumber);
+              if ($stmt2->execute()) {
+                $_SESSION['success_message'] = 'You have successfully created an account. <a href="' . BASE_URL . 'login">Return to Login page <br></a>';
+              } else {
+                $_SESSION['error_message'] = 'Failed to create helper details. Please try again later.';
+              }
+              $stmt2->close();
+            } else {
+              $_SESSION['success_message'] = 'You have successfully created an account. <a href="' . BASE_URL . 'login">Return to Login page <br></a>';
+            }
           } else {
             $_SESSION['error_message'] = 'Failed to create an account. Please try again later.';
           }
+          $stmt->close();
         } else {
           $_SESSION['error_message'] = 'Database error!';
         }
@@ -48,11 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 }
-
 ?>
 
 <main class="aboutmain">
-  <div class="top d-flex align-items-center" style="background-image: url('assets/Images/login.jpg');">
+  <div class="top d-flex align-items-center" style="background-image: url('assets/Images/gallery/login.jpg');">
     <div class="container position-relative d-flex flex-column align-items-center">
       <h2>Register</h2>
     </div>
@@ -80,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "<div class='text-success text-center'>$success</div>";
                   }
                   ?>
-                  <form class="row g-3 needs-validation" action="<?= BASE_URL ?>register" method="post">
+                  <form class="row g-3 needs-validation" action="<?= BASE_URL ?>register" method="post" novalidate>
                     <div class="col-12">
                       <label for="yourEmail" class="form-label">Email</label>
                       <input type="email" name="email" class="form-control" id="yourEmail" required>
@@ -108,13 +122,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="col-12">
                       <label for="userType" class="form-label">Who are you?</label>
-                      <select class="form-select" id="userType" name="userType" required>
+                      <select class="form-select" id="userType" name="userType" required onchange="toggleDisclosureNumber()">
                         <option selected disabled value="">Choose...</option>
                         <option value="leader">Leader</option>
                         <option value="helper">Helper</option>
                         <option value="cub">Cub</option>
                       </select>
                       <div class="invalid-feedback">Please select your role.</div>
+                    </div>
+                    <div class="col-12" id="disclosureNumberField" style="display:none;">
+                      <label for="disclosureNumber" class="form-label">Disclosure Number (optional)</label>
+                      <input type="text" name="disclosure_number" class="form-control" id="disclosureNumber">
                     </div>
                     <div class="col-12">
                       <div class="form-check">
@@ -124,12 +142,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn w-100 btnlogin" type="submit">Create Account</button>
+                      <button class="btn-join-us-square login" type="submit">Register</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Already have an account? <a href="<?= BASE_URL ?>login">Log in</a></p>
                     </div>
                   </form>
+                  <script>
+                    function toggleDisclosureNumber() {
+                      var userType = document.getElementById('userType').value;
+                      var disclosureField = document.getElementById('disclosureNumberField');
+                      if (userType === 'helper') {
+                        disclosureField.style.display = 'block';
+                      } else {
+                        disclosureField.style.display = 'none';
+                      }
+                    }
+                  </script>
                 </div>
               </div>
             </div>
@@ -138,9 +167,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </section>
   </div>
-</main>
-
-
 
 <?php
 include '../partials/footer.php';

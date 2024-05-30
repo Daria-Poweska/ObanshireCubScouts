@@ -42,7 +42,6 @@ include '../partials/navigation.php';
             <p>After the PVG disclosure certificate is issued by Disclosure Scotland, the Member Support Department at UKHQ informs either the relevant Commissioner or the local Appointment Secretary about the outcome. The volunteer’s membership record on Compass is updated accordingly. It's essential to understand that PVG disclosure checks are just one part of the National Vetting Process. Even after receiving the certificate, volunteers may not be able to start immediately.</p>
         </div>
     </div>
-</main>
 
 <?php
 include '../partials/footer.php';

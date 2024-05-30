@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn  w-100 btnlogin" type="submit">Login</button>
+                      <button class="btn-join-us-square login" type="submit">Login</button>
                     </div>
                     <div class="col-12">
                       <p class="small mb-0">Don't have account? <a href="<?= BASE_URL ?>register">Create an account</a></p>
@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
     </section>
   </div>
-</main>
+
 
 
 

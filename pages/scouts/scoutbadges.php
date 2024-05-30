@@ -72,7 +72,7 @@ $result = $stmt->get_result();
     </div>
 
     </div>
-</main>
+
 
 <?php include '../../partials/footer.php'; ?>
 

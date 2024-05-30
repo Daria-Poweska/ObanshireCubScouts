@@ -14,10 +14,10 @@ if (isset($_SESSION['error_message'])) {
 include '../../../partials/leaderheader.php';
 include '../../../partials/navbarforlogged.php';
 ?>
-<main  class="aboutmain">
+<main class="aboutmain">
     <div class="container">
         <section class="section dashboard">
-        <h1 class="text-center ">Images</h1>
+            <h1 class="text-center">Images</h1>
             <div class="row">
                 <div class="card no-hover">
                     <div class="card-body">
@@ -46,28 +46,27 @@ include '../../../partials/navbarforlogged.php';
                                             echo "<td class='manage-column'>
                                                         <form action='" . BASE_URL . "approvepicture' method='POST'>
                                                             <input type='hidden' name='picture_id' value='{$row['picture_id']}'>
-                                                            <button type='submit' class='btn btn-primary'>Approve</button>
+                                                            <button type='submit' class='btn-join-us-square'>Approve</button>
                                                         </form>
                                                         <form action='" . BASE_URL . "deletepicture' method='POST'>
                                                             <input type='hidden' name='picture_id' value='{$row['picture_id']}'>
-                                                            <button type='submit' class='btn btn-danger'>Delete</button>
+                                                            <button type='submit' class='btn-join-us-square delete'>Delete</button>
                                                         </form>
                                                     </td>";
                                             echo "</tr>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='3'>No pending pictures</td></tr>";
+                                        echo "<tr><td colspan='4'>No pending pictures</td></tr>";
                                     }
                                     ?>
                                 </tbody>
+                            </table>
                         </div>
-                        </table>
                     </div>
                 </div>
             </div>
+        </section>
     </div>
-    </div>
-    </section>
-    </div>
-</main>
+
+
 <?php include '../../../partials/footer.php'; ?>

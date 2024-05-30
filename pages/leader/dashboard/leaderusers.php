@@ -4,12 +4,24 @@ session_start();
 
 include '../../../partials/leaderheader.php';
 include '../../../partials/navbarforlogged.php';
+
+
 ?>
 
 <main class="aboutmain">
     <div class="container">
         <section class="section dashboard">
-        <h1 class="text-center">Users</h1>
+            <?php
+        if (isset($_SESSION['success_message'])) {
+    echo '<div class="alert alert-success">' . $_SESSION['success_message'] . '</div>';
+    unset($_SESSION['success_message']);
+}
+
+if (isset($_SESSION['error_message'])) {
+    echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+    unset($_SESSION['error_message']);
+} ?>
+            <h1 class="text-center">Users</h1>
             <div class="card no-hover">
                 <div class="card-body">
                     <h5 class="card-title">Filter Users By Their Role</h5>
@@ -72,7 +84,7 @@ include '../../../partials/navbarforlogged.php';
                                             <td style="color: red;">Inactive</td>
                                         <?php endif ?>
                                         <td class="manage-column">
-                                            <button onclick="window.location.href='<?= BASE_URL ?>deleteuser/<?= $id ?>'" type="button" class="btn btn-primary"><i class="bi bi-trash"></i></button>
+                                        <button onclick="window.location.href='<?= BASE_URL ?>account/config/delete_user.php?id=<?= $id ?>'" type="button" class="btn btn-primary"><i class="bi bi-trash"></i></button>
                                             <button onclick="window.location.href='<?= BASE_URL ?>edituser/<?= $id ?>'" type="button" class="btn btn-success"><i class="bi bi-pen"></i></button>
                                             <?php if ($is_active == 1) : ?>
                                                 <button onclick="window.location.href='<?= BASE_URL ?>inactive/<?= $id ?>'" class="btn btn-danger"><i class="bi bi-person-dash"></i></button>
@@ -89,6 +101,6 @@ include '../../../partials/navbarforlogged.php';
             </div>
         </section>
     </div>
-</main>
 
-<?php include '../../../partials/footer.php'; ?>
+
+    <?php include '../../../partials/footer.php'; ?>

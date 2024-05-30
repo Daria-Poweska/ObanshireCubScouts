@@ -121,7 +121,7 @@ include '../partials/navigation.php';
       </div>
     </div>
   </section>
-</main>
+
 
 <?php
 include '../partials/footer.php'

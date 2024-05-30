@@ -96,7 +96,7 @@ session_start();
 
     </section><!-- /Training Section -->
   </div>
-</main>
+
 
 
 

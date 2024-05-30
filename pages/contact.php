@@ -74,7 +74,7 @@ include '../partials/navigation.php';
         </div>
     </section><!-- End Contact Us Section -->
 
-</main>
+
 
 <?php
 include '../partials/footer.php';

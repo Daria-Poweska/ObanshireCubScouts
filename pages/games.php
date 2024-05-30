@@ -32,7 +32,7 @@ include '../partials/navigation.php';
                   <a href="https://lagged.com/en/g/hangman-2">Hangman</a>
                 </h2>
                 <div class="content">
-                  <p>Hangman is a classic word puzzle game that challenges players to guess the correct word before the hangman is fully drawn.</p>
+                  <p><strong>Hangman is a classic word puzzle game that challenges players to guess the correct word before the hangman is fully drawn.</strong></p>
                   <ul>
                     <li>Test your vocabulary skills.</li>
                     <li>Improve your spelling and word recognition.</li>
@@ -64,7 +64,7 @@ include '../partials/navigation.php';
                   <a href="https://www.terraclues.com/?AspxAutoDetectCookieSupport=1">Scavenger Hunt</a>
                 </h2>
                 <div class="content">
-                  <p>Scavenger Hunt is an exciting and adventurous game where players seek to find specific items or complete tasks within a set time frame.</p>
+                  <p><strong>Scavenger Hunt is an exciting and adventurous game where players seek to find specific items or complete tasks within a set time frame.</strong></p>
                   <ul>
                     <li>Promotes teamwork and collaboration.</li>
                     <li>Enhances problem-solving skills.</li>
@@ -96,7 +96,7 @@ include '../partials/navigation.php';
                   <a href="https://lagged.com/en/g/camping-master">Camping Master</a>
                 </h2>
                 <div class="content">
-                  <p>Camping Master is an engaging game that tests your camping skills and knowledge.</p>
+                  <p><strong>Camping Master is an engaging game that tests your camping skills and knowledge.</strong></p>
                   <ul>
                     <li>Learn about camping essentials.</li>
                     <li>Test your survival skills.</li>
@@ -128,7 +128,7 @@ include '../partials/navigation.php';
                   <a class="gameslink" href="https://lagged.com/en/g/knot">Knot</a>
                 </h2>
                 <div class="content">
-                  <p>Knot is a fun game where players learn how to tie different types of knots.</p>
+                  <p><strong>Knot is a fun game where players learn how to tie different types of knots.</strong></p>
                   <ul>
                     <li>Improve your knot-tying skills.</li>
                     <li>Learn practical knots for various uses.</li>
@@ -150,6 +150,5 @@ include '../partials/navigation.php';
     </div>
   </section>
 
-</main>
 
 <?php include '../partials/footer.php'; ?>

@@ -26,6 +26,7 @@
   --color-input: #e5e5e5;
   --color-bar: #ff5607;
   --color-h1: #530092;
+  --color-border: #e5e5e5;
 }
 
 /* Scroll Behaviour */
@@ -62,7 +63,7 @@ h6 {
 }
 
 /* Section Header////////////////////////////////////*/
- h2 {
+h2 {
   color: var(--color-h1);
 }
 
@@ -72,7 +73,7 @@ h6 {
 
 .section {
   overflow: hidden;
-  padding: 80px 0;
+  padding-top: 80px;
 }
 
 .section-header {
@@ -526,7 +527,7 @@ h6 {
 }
 
 .hero .btn-container .btn-join-us {
-  background: var(--color-fontshadow);
+  background: var(--color-fontwhite);
   color: var(--color-font);
 }
 
@@ -667,7 +668,28 @@ h6 {
 .aboutus.section {
   padding: 24px 0;
 }
+.cub-scouts-overview {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.icon {
+  margin-right: 10px;
+  width: 50px;
+}
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 20px;
+}
 
+.border {
+  margin-bottom: 15px;
+}
 /* Section Title */
 
 .section-title {
@@ -695,6 +717,10 @@ h6 {
   position: relative;
   z-index: 2;
   color: #f78c56 !important;
+}
+
+.date {
+  color: var(--color-secondary);
 }
 
 .section-title span {
@@ -893,7 +919,21 @@ h6 {
   margin-bottom: 46px;
   margin-top: -45px;
 }
+.top h2.top-heading {
+  font-size: 56px;
+  font-weight: 500;
+  color: #fff;
+  font-family: var(--font-secondary);
+  margin-bottom: 46px;
+  margin-top: -45px;
+}
 
+@media (max-width: 767px) {
+  .top h2.top-heading {
+      font-size: 44px;
+    text-align: center;
+  }
+}
 /* FOOTER //////////////////// */
 .footer {
   font-size: 14px;
@@ -902,7 +942,7 @@ h6 {
 .footer .footer-content {
   background-color: var(--color-default);
   background-size: contain;
-  padding: 60px 0 30px 0;
+  padding: 62px 12px 41px 16px
 }
 
 .footer .footer-content .footer-info {
@@ -1071,7 +1111,7 @@ h6 {
 .contact-us .info .address:hover i,
 .contact-us .info .phone:hover i {
   background: var(--color-secondary);
-  color: #fff;
+  color: #ffff;
 }
 
 .contact-us .email-form input,
@@ -1123,6 +1163,7 @@ h6 {
   display: block;
   margin: 0 auto;
   height: 100%;
+  margin-top: 10px;
 }
 
 .tobeachieved {
@@ -1166,6 +1207,11 @@ div [class^="col-"] {
 .card-title i:hover {
   transform: scale(1.25) rotate(100deg);
 }
+.card.no-hover {
+  transform: scale(1);
+  box-shadow: none;
+  border: 2px solid var(--color-border);
+}
 .card.no-hover:hover {
   transform: scale(1);
   box-shadow: none;
@@ -1175,8 +1221,8 @@ div [class^="col-"] {
 }
 
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.02);
+
 }
 .card-text {
   height: 55px;
@@ -1358,6 +1404,38 @@ table th {
   margin: 4px;
   border: none;
 }
+.btn-join-us-square .delete{
+  background: var(--color-bar) !important;
+  font-family: var(--font-robotoflex);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 10px 40px;
+  transition: 0.5s;
+  color: var(--color-fontwhite);
+  flex: 1;
+  text-align: center;
+  margin: 4px;
+  border: none;
+}
+.btn-join-us-square.login {
+  background: var(--color-buttons);
+  font-family: var(--font-robotoflex);
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  display: inline-block;
+  transition: 0.5s;
+  color: var(--color-fontwhite);
+  flex: 1;
+  text-align: center;
+  border: none;
+  width: 100%;
+  margin: 0;
+}
 
 .btn-join-us-square:hover {
   background: var(--color-secondary);
@@ -1383,27 +1461,27 @@ table th {
   .card-body-games {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; 
+    justify-content: flex-start;
   }
   .card-body-games .col-lg-6 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
   .card-body-games .col-lg-6 {
     display: flex;
     flex-direction: column;
   }
   .card-body-games .content {
-    margin-left: 0; 
-    text-align: left; 
+    margin-left: 0;
+    text-align: left;
   }
   .card-body-games .title {
-    text-align: left; 
+    text-align: left;
   }
   .card-body-games .read-more {
-    align-self: flex-start; 
+    align-self: flex-start;
   }
 }
 
@@ -1462,29 +1540,47 @@ table th {
 }
 .card {
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
 }
 .card-body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
+.modal-lg {
+  max-width: 800px;
+}
+
 .card-text {
   flex-grow: 1;
 }
-
 
 @media (max-width: 767px) {
   .row-equal > .col-md-4 {
     display: flex;
     flex-direction: column;
-    flex: none; 
+    flex: none;
     width: 100%;
   }
 }
 
-.btn-join-us-square.index{
-padding: 5px 40px;}
+.btn-join-us-square.index {
+  padding: 5px 40px;
+}
+
+/* Volunteer /////////// */
+
+.volunteer {
+  color: var(--color-fontwhite);
+}
+
+/* Carousel */
+
+.text-center-carousel {
+  text-align: center;
+  color: var(--color-font);
+}

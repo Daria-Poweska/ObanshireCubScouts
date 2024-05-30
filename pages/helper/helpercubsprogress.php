@@ -185,6 +185,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'helper') {
             </div>
         </section>
     </div>
-</main>
+
 
 <?php include '../../partials/footer.php'; ?>

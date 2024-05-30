@@ -13,6 +13,7 @@
     RewriteRule ^games$ /ObanshireCubScouts/pages/games.php [L]
     RewriteRule ^disclosure$ /ObanshireCubScouts/pages/disclosure.php [L]
     RewriteRule ^logo$ /ObanshireCubScouts/assets/Images/Logo.png [L]
+    RewriteRule ^icon$ /ObanshireCubScouts/assets/Images/symbol.png [L]
     RewriteRule ^helpers$ /ObanshireCubScouts/pages/helpers.php [L]
 
 
@@ -24,6 +25,7 @@
     RewriteRule ^leaderbadges$ /ObanshireCubScouts/pages/leader/dashboard/leaderbadges.php [L]
     RewriteRule ^leaderhelpers$ /ObanshireCubScouts/pages/leader/dashboard/leaderhelpers.php [L]
     RewriteRule ^edituser/([0-9]+)$ /ObanshireCubScouts/pages/leader/dashboard/leadereditusers.php?user_id=$1 [L]
+    
    
     # Scouts
 
@@ -50,6 +52,7 @@
     RewriteRule ^deleteuser/([0-9]+)$ /ObanshireCubScouts/account/config/delete_user.php?user_id=$1 [L]
     RewriteRule ^updateuser/([0-9]+)$ /ObanshireCubScouts/account/config/update_user.php?user_id=$1 [L]
     RewriteRule ^edituserhelper/([0-9]+)$ /ObanshireCubScouts/account/config/update_details_helper.php?user_id=$1 [L]
+    RewriteRule ^deleteuser/([0-9]+)$ /ObanshireCubScouts/pages/leader/dashboard/delete_user.php?user_id=$1 [L]
     
 
    

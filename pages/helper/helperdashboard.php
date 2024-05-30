@@ -5,90 +5,132 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-if (isset($_SESSION['error_message'])) {
-    echo '<p style="color: red;">' . $_SESSION['error_message'] . '</p>';
-    unset($_SESSION['error_message']);
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
 }
 
-// Check if the user is logged in and is a helper
-if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'helper') {
-    $helper_id = $_SESSION['user_id'];
+// Get the user ID from the session
+$userId = $_SESSION['user_id'];
 
-    // Check if the form for availability has been submitted
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['availability_submit'])) {
-        if (!empty($_POST['availability_day'])) {
-            $availability_days = $_POST['availability_day'];
-            $availability = $_POST['availability'];
+// Initialize messages
+$errorMessage = '';
+$successMessage = '';
 
-            foreach ($availability_days as $index => $day) {
-                $availability_day = $availability_days[$index];
-                $availability_time = $availability[$index];
+// Handle form submission for updating user details
+if (isset($_POST['user_details_submit'])) {
+    // Capture form data
+    $username = $_POST['username'];
+    $name = $_POST['name'];
+    $surname = $_POST['surname'];
+    $email = $_POST['email'];
+    $disclosure_number = $_POST['disclosure_number'];
 
-                // Prepare and bind the SQL statement
-                $stmt = $conn->prepare("INSERT INTO helperdetails (helper_id, availability_day, availability) VALUES (?, ?, ?)");
-                $stmt->bind_param("iss", $helper_id, $availability_day, $availability_time);
+    // Validate input
+    if (empty($username) || empty($email)) {
+        $errorMessage = "Username and Email are required fields.";
+    } else {
+        // Start transaction
+        $conn->begin_transaction();
 
-                // Execute the statement
-                if ($stmt->execute() === TRUE) {
-                    $successMessage = 'Availability saved successfully for ' . $day . ' - ' . $availability_time;
-                } else {
-                    $errorMessage = 'Error: ' . $stmt->error;
-                }
+        // Update the users table
+        $query1 = "UPDATE users SET username=?, name=?, surname=?, email=? WHERE user_id=?";
+        $stmt1 = $conn->prepare($query1);
+        if (!$stmt1) {
+            $errorMessage .= 'Prepare failed for users table: ' . $conn->error;
+        }
+        $stmt1->bind_param("ssssi", $username, $name, $surname, $email, $userId);
+        $stmt1->execute();
 
-                // Close the statement
-                $stmt->close();
+        // Check for errors
+        if ($stmt1->error) {
+            $errorMessage .= "Error updating user details: " . $stmt1->error;
+            $conn->rollback();
+        } else {
+            // Update the helperdetails table
+            $query2 = "UPDATE helperdetails SET disclosure_number=? WHERE user_id=?";
+            $stmt2 = $conn->prepare($query2);
+            if (!$stmt2) {
+                $errorMessage .= 'Prepare failed for helperdetails table: ' . $conn->error;
             }
-        } else {
-            $errorMessage = 'Please select at least one day.';
+            $stmt2->bind_param("si", $disclosure_number, $userId);
+            $stmt2->execute();
+
+            // Check for errors
+            if ($stmt2->error) {
+                $errorMessage .= "Error updating helper details: " . $stmt2->error;
+                $conn->rollback();
+            } else {
+                $successMessage = "Details updated successfully.";
+                $conn->commit();
+            }
         }
+        $stmt1->close();
+        $stmt2->close();
     }
+}
 
-    // Update user details
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_details_submit'])) {
-        $username = $_POST['username'];
-        $name = $_POST['name'];
-        $surname = $_POST['surname'];
-        $email = $_POST['email'];
-        $disclosure_number = $_POST['disclosure_number'];
+// Handle form submission for updating availability
+if (isset($_POST['availability_submit'])) {
+    $availabilityDays = $_POST['availability_day'];
+    $availabilityTime = $_POST['availability'][0];
 
-        // Prepare the SQL statement
-        $stmt = $conn->prepare('UPDATE users u JOIN helperdetails hd ON u.user_id = hd.helper_id SET u.username = ?, u.name = ?, u.surname = ?, u.email = ?, hd.disclosure_number = ? WHERE u.user_id = ?');
-        $stmt->bind_param('sssssi', $username, $name, $surname, $email, $disclosure_number, $helper_id);
-
-        // Execute the statement
-        if ($stmt->execute()) {
-            $successMessage = 'User details updated successfully.';
-        } else {
-            $errorMessage = 'Error updating user details: ' . $stmt->error;
-        }
-
-        // Close the statement
-        $stmt->close();
-    }
-
-    // Fetch user details and disclosure number
-    $stmt = $conn->prepare('SELECT u.username, u.name, u.surname, u.email, hd.disclosure_number FROM users u LEFT JOIN helperdetails hd ON u.user_id = hd.helper_id WHERE u.user_id = ?');
-    $stmt->bind_param('i', $helper_id);
+    // Remove existing availability for the user
+    $deleteQuery = "DELETE FROM availability WHERE user_id=?";
+    $stmt = $conn->prepare($deleteQuery);
+    $stmt->bind_param("i", $userId);
     $stmt->execute();
-
-    // Bind the result
-    $stmt->bind_result($bound_username, $bound_name, $bound_surname, $bound_email, $bound_disclosure_number);
-    $stmt->fetch();
     $stmt->close();
 
-    include '../../partials/leaderheader.php';
-    include '../../partials/navbarforlogged.php';
-} else {
-    // Redirect to login page if the user is not logged in as a helper
-    header("Location: login.php");
-    exit;
-}
-?>
+    // Insert new availability data
+    $insertQuery = "INSERT INTO availability (user_id, availability_day, availability_time) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($insertQuery);
+    foreach ($availabilityDays as $day) {
+        $stmt->bind_param("iss", $userId, $day, $availabilityTime);
+        if (!$stmt->execute()) {
+            $errorMessage .= "Error inserting availability: " . $stmt->error;
+            break;
+        }
+    }
+    $stmt->close();
 
+    if (empty($errorMessage)) {
+        $successMessage = "Availability updated successfully.";
+    }
+}
+
+// Fetch user details from the database
+$query = "SELECT username, name, surname, email FROM users WHERE user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $userId);
+$stmt->execute();
+$stmt->bind_result($username, $name, $surname, $email);
+$stmt->fetch();
+$stmt->close();
+
+// Fetch helper details from the database
+$query2 = "SELECT disclosure_number FROM helperdetails WHERE user_id = ?";
+$stmt2 = $conn->prepare($query2);
+$stmt2->bind_param("i", $userId);
+$stmt2->execute();
+$stmt2->bind_result($disclosure_number);
+$stmt2->fetch();
+$stmt2->close();
+
+// Provide default values if the variables are null
+$username = $username ?? '';
+$name = $name ?? '';
+$surname = $surname ?? '';
+$email = $email ?? '';
+$disclosure_number = $disclosure_number ?? '';
+?>
+<?php include '../../partials/leaderheader.php'; ?>
+<?php include '../../partials/navbarforlogged.php'; ?>
 <main class="aboutmain">
     <div class="container">
         <section class="section dashboard">
-            <h1 class="text-center ">Helper Dashboard</h1>
+            <h1 class="text-center">Helper Dashboard</h1>
             <div class="row">
                 <div class="card no-hover">
                     <div class="card-body">
@@ -100,7 +142,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'helper') {
                         <form method="post" action="">
                             <div class="form-group">
                                 <label for="availability_day">Available Day:</label>
-
                                 <div class="availability-container">
                                     <div class="form-check-helper">
                                         <input class="form-check-input" type="checkbox" name="availability_day[]" value="Monday" id="monday">
@@ -130,7 +171,6 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'helper') {
                                         <input class="form-check-input" type="checkbox" name="availability_day[]" value="Sunday" id="sunday">
                                         <label class="form-check-label" for="sunday">Sunday</label>
                                     </div>
-                                    <!-- Add more checkboxes for other days -->
                                 </div>
                             </div>
                             <div class="form-group col-md-6 position-relative">
@@ -155,30 +195,29 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'helper') {
                 <div class="card no-hover">
                     <div class="card-body">
                         <h3 class="card-title no-hover">Update your details:</h3>
-                        
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Username:</label>
-                                <input type="text" class="form-control" value="<?= $bound_username ?>" name="username">
+                                <input type="text" class="form-control" value="<?= htmlspecialchars($username) ?>" name="username">
                             </div>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" value="<?= $bound_name ?>" name="name">
+                                <input type="text" class="form-control" value="<?= htmlspecialchars($name) ?>" name="name">
                             </div>
                             <div class="form-group">
                                 <label>Surname</label>
-                                <input type="text" class="form-control" value="<?= $bound_surname ?>" name="surname">
+                                <input type="text" class="form-control" value="<?= htmlspecialchars($surname) ?>" name="surname">
                             </div>
                             <div class="form-group">
                                 <label>Email Address</label>
-                                <input type="text" class="form-control" value="<?= $bound_email ?>" name="email">
+                                <input type="text" class="form-control" value="<?= htmlspecialchars($email) ?>" name="email">
                             </div>
                             <div class="form-group">
                                 <label>Disclosure Number</label>
-                                <input type="text" class="form-control" value="<?= $bound_disclosure_number ?>" name="disclosure_number">
+                                <input type="text" class="form-control" value="<?= htmlspecialchars($disclosure_number) ?>" name="disclosure_number">
                             </div>
                             <br>
-                            <button type="submit" class="btn-join-us-square mb-3" name="user_details_submit">Submit <br></button>
+                            <button type="submit" class="btn-join-us-square mb-3" name="user_details_submit">Submit</button>
                             <?php if (isset($successMessage) && isset($_POST['user_details_submit'])) { ?>
                                 <div style="margin-top: 15px;">
                                     <div class="alert alert-success"><?= $successMessage ?></div>
@@ -190,6 +229,5 @@ if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'helper') {
             </div>
         </section>
     </div>
+    <?php include '../../partials/footer.php'; ?>
 </main>
-
-<?php include '../../partials/footer.php'; ?>
