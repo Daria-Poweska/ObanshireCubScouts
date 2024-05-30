@@ -1,3 +1,5 @@
+<!-- Becoming a helper / Volunteering -->
+
 <?php
 include '../account/config/config.php';
 include '../partials/header.php';
@@ -59,7 +61,10 @@ include '../partials/navigation.php';
       <h4 class="mt-4">Get Involved</h4>
       <p>Obanshire Cub Scouts gratefully welcomes any assistance from parents and caregivers. If you are interested in becoming a helper, please contact our volunteer coordinator for more information. Your involvement can make a tremendous impact on the growth of our young scouts.</p>
       <p>Register you interest now!</p>
-      <button class="btn-join-us-square"><a href="<?= BASE_URL ?>register" class="volunteer">Register</a></button>
+      <div class="button-link-wrapper">
+                <span class="button-link"><a href="<?= BASE_URL ?>register">Register</a></span>
+            </div>
+     
 
       <div class="container my-4 bg-white p-4 rounded">
 
@@ -127,5 +132,4 @@ include '../partials/navigation.php';
 
 <?php
 include '../partials/footer.php';
-unset($_SESSION["error_message"]);
 ?>

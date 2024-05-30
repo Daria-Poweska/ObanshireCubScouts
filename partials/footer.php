@@ -2,62 +2,91 @@
 <p class="cub-scouts-overview"><img src="<?= BASE_URL ?>icon" alt="scouts icon" class="icon middle"></div>
 </main>
 <!-- ======= Footer ======= -->
-<footer id="footer" class="footer">
 
-    <div class="footer-content">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-5 col-md-12 footer-info">
-                    <a href="index.html" class="logo d-flex align-items-center">
-                        <span>Obanshire Cub Scouts</span>
-                    </a>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                        valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-                    <div class="social-links d-flex  mt-3">
-                        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    </div>
-                </div>
 
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><i class="bi bi-dash"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-dash"></i> <a href="#">About</a></li>
-                        <li><i class="bi bi-dash"></i> <a href="#">Gallery</a></li>
-                        <li><i class="bi bi-dash"></i> <a href="#">Badges</a></li>
-                        <li><i class="bi bi-dash"></i> <a href="#">Log In</a></li>
-                    </ul>
-                </div>
+ 
+  
+  
+<footer class="footer text-center text-white">
+  <div class="container pb-0">
+  <section class="mt-5">
+        <!-- Grid row-->
+        <div class="row text-center d-flex justify-content-center pt-5 mb-4">
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="<?= BASE_URL ?>events" class="text-white">Events</a>
+            </h6>
+          </div>
 
-                <div class="col-lg-2 col-6 footer-links">
-                    <h4>More</h4>
-                    <ul>
-                        <li><i class="bi bi-dash"></i> <a href="#">Links</a></li>
-                        <li><i class="bi bi-dash"></i> <a href="#">Terms Of Service</a></li>
-                        <li><i class="bi bi-dash"></i> <a href="#">Privacy Policy</a></li>
-                        <li>
-                    </ul>
-                </div>
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="<?= BASE_URL ?>gallery" class="text-white">Gallery</a>
+            </h6>
+          </div>
 
-                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                    <h4>Contact Us</h4>
-                    <p>
-                        157a Monteith Row<br>
-                        G40 1AZ Glasgow<br>
-                        <strong>Phone:</strong> 07939127723<br>
-                        <strong>Email:</strong> oban@gmail.com<br>
-                    </p>
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="<?= BASE_URL ?>badges" class="text-white ">Badges</a>
+            </h6>
+          </div>
 
-                </div>
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="<?= BASE_URL ?>disclosure" class="text-white">Disclosure</a>
+            </h6>
+          </div>
 
-            </div>
+          <div class="col-md-2">
+            <h6 class="text-uppercase font-weight-bold">
+              <a href="<?= BASE_URL ?>helpers" class="text-white">Volunteer</a>
+            </h6>
+          </div>
         </div>
-    </div>
+      </section>
+    <section class="mb-4 footer-links">
+      <a class="btn btn-outline-light btn-floating m-1 footer-links" href="#" role="button"
+        ><i class="bi bi-facebook"></i>
+      <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"
+        ><i class="bi bi-instagram"></i>
+      <a class="btn btn-outline-light btn-floating m-1" href="#" role="button"
+        ><i class="bi bi-twitter"></i></a>
+
+  
+    </section>
+    <section>
+        
+      <form>
+        <div class="row d-flex justify-content-center">
+          <div class="col-auto">
+            <p class="pt-2">
+              <strong>Sign up for our newsletter</strong>
+            </p>
+          </div>
+          <div class="col-md-5 col-12">
+            <div class="form-outline form-white mb-4">
+              <input type="email" class="form-control" placeholder="Email Address" />
+            </div>
+</div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-outline-light mb-4">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
 
 
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+
+    <p class="text-white">Obanshirecubscouts.co.uk</a>
+  </div>
+ 
 </footer>
+  
+</div>
 
 
 
@@ -73,6 +102,7 @@
 <!-- Custom JS -->
 <script src="<?= BASE_URL ?>./assets/JavaScript/gallery-filter.js"></script>
 <script src="<?= BASE_URL ?>./assets/JavaScript/badge-search.js"></script>
+<script src="<?= BASE_URL ?>./assets/JavaScript/confirmation.js"></script>
 
 <script src="<?= BASE_URL ?>javascript"></script>
 

@@ -3656,9 +3656,7 @@
     -moz-column-gap: 3rem !important;
     column-gap: 3rem !important;
   }
-  .text-md-start {
-    text-align: left !important;
-  }
+
   .text-md-end {
     text-align: right !important;
   }

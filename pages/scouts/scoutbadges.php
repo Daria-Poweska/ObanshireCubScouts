@@ -1,12 +1,14 @@
+<!-- Scout Badges -->
+
 <?php
 include '../../account/config/config.php';
-session_start();
-include '../../partials/leaderheader.php';
-include '../../partials/navbarforlogged.php';
+include '../../partials/header.php';
+include '../../partials/navigation.php';
 
-$userId = $_SESSION['user_id']; // Assuming you have the current user's ID in the session
+// Getting user ID from session
+$userId = $_SESSION['user_id'];
 
-// Query to fetch both achieved and unachieved badges
+// Querying to get badges and their achievement status for the user
 $query = "SELECT b.badge_id, b.badge_name, b.badge_description, b.badge_picture, ub.achieved, ub.awarded_date
           FROM badges b
           LEFT JOIN user_badges ub ON b.badge_id = ub.badge_id AND ub.user_id = ?
@@ -19,10 +21,19 @@ $result = $stmt->get_result();
 ?>
 
 <main class="aboutmain">
+    <div class="top d-flex align-items-center" style="background-image: url('assets/Images/Gallery/badges.jpg');">
+        <div class="container position-relative d-flex flex-column align-items-center">
+            <h2 class="top-heading">Achieved Badges</h2>
+        </div>
+        <div class="bottom-bar d-flex align-items-center justify-content-center">
+            <h3>Discover our wide range of badges! From outdoor skills to community service, there's a badge for every interest.</h3>
+        </div>
+    </div>
+
     <div class="container">
-        <section class="section dashboard">
+        <!-- Achieved Badges Section -->
+        <section class="section dashboardcard">
             <div class="container mt-2">
-                <h2 class="text-center mb-4">Achieved Badges</h2>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="achievedBadges">
                     <?php while ($badge = $result->fetch_assoc()) { ?>
                         <?php if ($badge['achieved']) { ?>
@@ -43,10 +54,8 @@ $result = $stmt->get_result();
             </div>
         </section>
 
-
+        <!-- Badges to Achieve Section -->
         <div class="tobeachieved">
-            <!-- Search Field for Badges to Achieve -->
-
             <h2 class="text-center mb-4">Badges to Achieve</h2>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="unachievedBadges">
                 <?php
@@ -71,17 +80,15 @@ $result = $stmt->get_result();
         </div>
     </div>
 
-    </div>
+    <?php include '../../partials/footer.php'; ?>
 
 
-<?php include '../../partials/footer.php'; ?>
-
-<script>
-    // Printing badges function
-    function printBadge(imageUrl) {
-        var printWindow = window.open('', '_blank');
-        printWindow.document.write('<html><head><title>Print Badge</title></head><body style="text-align:center;"><img src="' + imageUrl + '" /></body></html>');
-        printWindow.document.close();
-        printWindow.print();
-    }
-</script>
+    <script>
+        function printBadge(imageUrl) {
+            var printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Print Badge</title></head><body style="text-align:center;"><img src="' + imageUrl + '" /></body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+    </script>
+</main>

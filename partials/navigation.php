@@ -43,13 +43,8 @@
              <?php elseif ($_SESSION['user_type'] == 'cub') : ?>
                  <li><a href="<?= BASE_URL ?>index" <?= ($currentPage == BASE_URL . 'index' || $currentPage == BASE_URL) ? 'class="active"' : '' ?>>Home</a></li>
                  <li><a href="<?= BASE_URL ?>events" <?= ($currentPage == BASE_URL . 'events') ? 'class="active"' : '' ?>>Events</a></li>
-                 <li class="dropdown">
-                     <a href="#"><span>Gallery</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                     <ul>
-                         <li><a href="<?= BASE_URL ?>gallery" <?= ($currentPage == BASE_URL . 'gallery') ? 'class="active"' : '' ?>>Gallery</a></li>
-                         <li><a href="<?= BASE_URL ?>shareduploadimages" <?= ($currentPage == BASE_URL . 'shareduploadimages') ? 'class="active"' : '' ?>>Upolad Images</a></li>
-                     </ul>
-                 </li>
+                 <li><a href="<?= BASE_URL ?>gallery" <?= ($currentPage == BASE_URL . 'gallery') ? 'class="active"' : '' ?>>Gallery</a></li>
+                         <li><a href="<?= BASE_URL ?>shareduploadimages" <?= ($currentPage == BASE_URL . 'shareduploadimages') ? 'class="active"' : '' ?>>Upload Images</a></li>
                  <li><a href="<?= BASE_URL ?>contact" <?= ($currentPage == BASE_URL . 'contact') ? 'class="active"' : '' ?>>Contact</a></li>
                  <li><a href="<?= BASE_URL ?>scoutbadges" <?= ($currentPage == BASE_URL . 'scoutbadges') ? 'class="active"' : '' ?>>Your Badges</a></li>
                  <li><a href="<?= BASE_URL ?>games" <?= ($currentPage == BASE_URL . 'games') ? 'class="active"' : '' ?>>Games</a></li>

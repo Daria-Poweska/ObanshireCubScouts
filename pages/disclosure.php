@@ -1,3 +1,5 @@
+<!-- Disclosure -->
+
 <?php
 include '../account/config/config.php';
 include '../partials/header.php';
@@ -21,7 +23,7 @@ include '../partials/navigation.php';
 
             <h4 class="mt-4">The PVG Scheme</h4>
             <p>The Protecting Vulnerable Groups (PVG) Scheme is crucial for ensuring safer appointment decisions. It allows only suitable individuals to work with vulnerable groups, including children.
-                To find out more <a href="https://www.mygov.scot/disclosure-types?via=https://www.disclosurescotland.co.uk/">Click</a>
+                
             </p>
 
             <h4 class="mt-4">Initiating a PVG Check</h4>
@@ -39,13 +41,13 @@ include '../partials/navigation.php';
             <p>Once the online form is submitted by the ID checker, a notification is sent to the District Appointments Secretary for verification. If all the information provided is accurate, the application is accepted and forwarded to the Safe Scouting Team. Otherwise, the application is rejected, and the ID checker is notified to rectify the incorrect information.</p>
 
             <h4 class="mt-4">Issuing of the PVG Disclosure</h4>
-            <p>After the PVG disclosure certificate is issued by Disclosure Scotland, the Member Support Department at UKHQ informs either the relevant Commissioner or the local Appointment Secretary about the outcome. The volunteer’s membership record on Compass is updated accordingly. It's essential to understand that PVG disclosure checks are just one part of the National Vetting Process. Even after receiving the certificate, volunteers may not be able to start immediately.</p>
+            <p>After the PVG disclosure certificate is issued by Disclosure Scotland, the Member Support Department at UKHQ informs either the relevant Commissioner or the local Appointment Secretary about the outcome. The volunteer’s membership record on Compass is updated accordingly. It's essential to understand that PVG disclosure checks are just one part of the National Vetting Process. Even after receiving the certificate, volunteers may not be able to start immediately. </p><p> <br> To find out more click below:</p>
+            <div class="button-link-wrapper">
+                <span class="button-link"><a href="https://www.mygov.scot/disclosure-types?via=https://www.disclosurescotland.co.uk/">Click Here</a></span>
+            </div>
         </div>
     </div>
 
 <?php
 include '../partials/footer.php';
-unset($_SESSION["error_message"]);
 ?>
-
-

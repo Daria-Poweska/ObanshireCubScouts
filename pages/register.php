@@ -1,12 +1,17 @@
+<!-- Register -->
+
 <?php
 include '../account/config/config.php';
 include '../partials/header.php';
 include '../partials/navigation.php';
 
+// Checking if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['name']) || empty($_POST['surname'])) {
+  // Validating form fields
+  if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['email']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['userType'])) {
     $_SESSION['error_message'] = 'Please fill all the fields!';
   } else {
+    // Retrieving form data
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -15,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $surname = $_POST['surname'];
     $disclosureNumber = isset($_POST['disclosure_number']) ? $_POST['disclosure_number'] : null;
 
+    // Checking if username or email exists
     if ($stmt = $conn->prepare('SELECT user_id FROM users WHERE username = ? OR email = ?')) {
       $stmt->bind_param('ss', $username, $email);
       $stmt->execute();
@@ -23,20 +29,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if ($stmt->num_rows > 0) {
         $stmt->bind_result($existingUserId);
         $stmt->fetch();
-        if ($existingUserId) {
-          $_SESSION['error_message'] = 'Username or email already exists! Please choose another.';
-        }
+        $_SESSION['error_message'] = 'Username or email already exists! Please choose another.';
       } else {
         $stmt->close();
 
+        // Hashing password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
+        // Inserting user into database
         if ($stmt = $conn->prepare("INSERT INTO users (username, email, password, user_type, name, surname) VALUES (?, ?, ?, ?, ?, ?)")) {
           $stmt->bind_param("ssssss", $username, $email, $hashed_password, $userType, $name, $surname);
           if ($stmt->execute()) {
             $userId = $stmt->insert_id;
 
-            // Insert into helperdetails if userType is helper
+            // Inserting helper details if userType is helper
             if ($userType == 'helper') {
               $query2 = "INSERT INTO helperdetails (user_id, disclosure_number) VALUES (?, ?)";
               $stmt2 = $conn->prepare($query2);

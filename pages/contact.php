@@ -1,3 +1,5 @@
+<!-- Contact Page -->
+
 <?php
 include '../account/config/config.php';
 include '../partials/header.php';
@@ -21,7 +23,6 @@ include '../partials/navigation.php';
             <div class="card no-hover">
                 <div class="card-body">
                     <div>
-
                             <iframe style="border:0; width: 100%; height: 270px;"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4413.896237715746!2d-5.479263780193476!3d56.41695709290405!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48896774a335c2b7%3A0x2b4b8cd7be0371fe!2s1st%20Argyll%20(Lorn)%20Scout%20Group!5e0!3m2!1sen!2sus!4v1715961198380!5m2!1sen!2sus" allowfullscreen frameborder="0"  loading="lazy" ></iframe>
                     </div>
                     <div class="row mt-5">

@@ -24,6 +24,7 @@
     RewriteRule ^leaderimages$ /ObanshireCubScouts/pages/leader/dashboard/leaderimages.php [L]
     RewriteRule ^leaderbadges$ /ObanshireCubScouts/pages/leader/dashboard/leaderbadges.php [L]
     RewriteRule ^leaderhelpers$ /ObanshireCubScouts/pages/leader/dashboard/leaderhelpers.php [L]
+    RewriteRule ^leaderevents$ /ObanshireCubScouts/pages/leader/dashboard/leaderevents.php [L]
     RewriteRule ^edituser/([0-9]+)$ /ObanshireCubScouts/pages/leader/dashboard/leadereditusers.php?user_id=$1 [L]
     
    
@@ -46,6 +47,7 @@
     # Config
 
     RewriteRule ^approvepicture$ /ObanshireCubScouts/account/config/approve_picture.php [L]
+    RewriteRule ^addevent$ /ObanshireCubScouts/account/config/add_event.php [L]
     RewriteRule ^deletepicture$ /ObanshireCubScouts/account/config/delete_picture.php [L]
     RewriteRule ^active/([0-9]+)$ /ObanshireCubScouts/account/config/active_user.php?user_id=$1 [L]
     RewriteRule ^inactive/([0-9]+)$ /ObanshireCubScouts/account/config/inactive_user.php?user_id=$1 [L]

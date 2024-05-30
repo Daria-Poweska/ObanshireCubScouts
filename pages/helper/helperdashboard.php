@@ -1,3 +1,5 @@
+<!-- Helpers Dashboard -->
+
 <?php
 include '../../account/config/config.php';
 session_start();
@@ -5,36 +7,32 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Check if user is logged in
+// Checking if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
 
-// Get the user ID from the session
+// Getting the user ID from the session
 $userId = $_SESSION['user_id'];
-
-// Initialize messages
 $errorMessage = '';
 $successMessage = '';
 
-// Handle form submission for updating user details
+// Handling form submission for updating user details
 if (isset($_POST['user_details_submit'])) {
-    // Capture form data
     $username = $_POST['username'];
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
     $disclosure_number = $_POST['disclosure_number'];
 
-    // Validate input
+    // Validating input
     if (empty($username) || empty($email)) {
         $errorMessage = "Username and Email are required fields.";
     } else {
-        // Start transaction
         $conn->begin_transaction();
 
-        // Update the users table
+        // Updating the users table
         $query1 = "UPDATE users SET username=?, name=?, surname=?, email=? WHERE user_id=?";
         $stmt1 = $conn->prepare($query1);
         if (!$stmt1) {
@@ -43,12 +41,12 @@ if (isset($_POST['user_details_submit'])) {
         $stmt1->bind_param("ssssi", $username, $name, $surname, $email, $userId);
         $stmt1->execute();
 
-        // Check for errors
+        // Checking for errors
         if ($stmt1->error) {
             $errorMessage .= "Error updating user details: " . $stmt1->error;
             $conn->rollback();
         } else {
-            // Update the helperdetails table
+            // Updating the helperdetails table
             $query2 = "UPDATE helperdetails SET disclosure_number=? WHERE user_id=?";
             $stmt2 = $conn->prepare($query2);
             if (!$stmt2) {
@@ -57,7 +55,7 @@ if (isset($_POST['user_details_submit'])) {
             $stmt2->bind_param("si", $disclosure_number, $userId);
             $stmt2->execute();
 
-            // Check for errors
+            // Checking for errors
             if ($stmt2->error) {
                 $errorMessage .= "Error updating helper details: " . $stmt2->error;
                 $conn->rollback();
@@ -71,19 +69,19 @@ if (isset($_POST['user_details_submit'])) {
     }
 }
 
-// Handle form submission for updating availability
+// Handling form submission for updating availability
 if (isset($_POST['availability_submit'])) {
     $availabilityDays = $_POST['availability_day'];
     $availabilityTime = $_POST['availability'][0];
 
-    // Remove existing availability for the user
+    // Removing existing availability for the user
     $deleteQuery = "DELETE FROM availability WHERE user_id=?";
     $stmt = $conn->prepare($deleteQuery);
     $stmt->bind_param("i", $userId);
     $stmt->execute();
     $stmt->close();
 
-    // Insert new availability data
+    // Inserting new availability data
     $insertQuery = "INSERT INTO availability (user_id, availability_day, availability_time) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($insertQuery);
     foreach ($availabilityDays as $day) {
@@ -100,7 +98,7 @@ if (isset($_POST['availability_submit'])) {
     }
 }
 
-// Fetch user details from the database
+// Fetching user details from the database
 $query = "SELECT username, name, surname, email FROM users WHERE user_id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $userId);
@@ -109,7 +107,7 @@ $stmt->bind_result($username, $name, $surname, $email);
 $stmt->fetch();
 $stmt->close();
 
-// Fetch helper details from the database
+// Fetching helper details from the database
 $query2 = "SELECT disclosure_number FROM helperdetails WHERE user_id = ?";
 $stmt2 = $conn->prepare($query2);
 $stmt2->bind_param("i", $userId);
@@ -118,7 +116,7 @@ $stmt2->bind_result($disclosure_number);
 $stmt2->fetch();
 $stmt2->close();
 
-// Provide default values if the variables are null
+// Providing default values if the variables are null
 $username = $username ?? '';
 $name = $name ?? '';
 $surname = $surname ?? '';
@@ -139,6 +137,7 @@ $disclosure_number = $disclosure_number ?? '';
                         <?php if (!empty($errorMessage) && isset($_POST['availability_submit'])) { ?>
                             <div class="alert alert-danger"><?= $errorMessage ?></div>
                         <?php } ?>
+                        <!-- Availability form -->
                         <form method="post" action="">
                             <div class="form-group">
                                 <label for="availability_day">Available Day:</label>
@@ -190,11 +189,11 @@ $disclosure_number = $disclosure_number ?? '';
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="card no-hover">
                     <div class="card-body">
                         <h3 class="card-title no-hover">Update your details:</h3>
+                        <!-- Form for updating the details -->
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Username:</label>

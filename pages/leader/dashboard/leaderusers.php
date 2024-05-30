@@ -1,26 +1,26 @@
 <?php
 include '../../../account/config/config.php';
 session_start();
-
 include '../../../partials/leaderheader.php';
 include '../../../partials/navbarforlogged.php';
-
-
 ?>
 
 <main class="aboutmain">
     <div class="container">
         <section class="section dashboard">
             <?php
-        if (isset($_SESSION['success_message'])) {
-    echo '<div class="alert alert-success">' . $_SESSION['success_message'] . '</div>';
-    unset($_SESSION['success_message']);
-}
+            // Displaying success message 
+            if (isset($_SESSION['success_message'])) {
+                echo '<div class="alert alert-success">' . $_SESSION['success_message'] . '</div>';
+                unset($_SESSION['success_message']);
+            }
 
-if (isset($_SESSION['error_message'])) {
-    echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
-    unset($_SESSION['error_message']);
-} ?>
+            // Displaying error message 
+            if (isset($_SESSION['error_message'])) {
+                echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+                unset($_SESSION['error_message']);
+            }
+            ?>
             <h1 class="text-center">Users</h1>
             <div class="card no-hover">
                 <div class="card-body">
@@ -55,13 +55,20 @@ if (isset($_SESSION['error_message'])) {
                             </thead>
                             <tbody>
                                 <?php
+                                // Retrieving filter value
                                 $filter = isset($_GET['filter']) ? $_GET['filter'] : '';
+
+                                // Query based on filter value
                                 if ($filter == 'cub' || $filter == 'helper') {
                                     $query = "SELECT * FROM users WHERE user_type = '$filter'";
                                 } else {
                                     $query = "SELECT * FROM users WHERE user_type != 'leader'";
                                 }
+
+                                // Executing query
                                 $users = $conn->query($query);
+
+                                // Fetch and display users
                                 while ($user = $users->fetch_assoc()) {
                                     $id = $user['user_id'];
                                     $username = $user['username'];
@@ -78,13 +85,9 @@ if (isset($_SESSION['error_message'])) {
                                         <td><?= $surname ?></td>
                                         <td><?= $user_type ?></td>
                                         <td><?= $email ?></td>
-                                        <?php if ($is_active == 1) : ?>
-                                            <td>Active</td>
-                                        <?php else : ?>
-                                            <td style="color: red;">Inactive</td>
-                                        <?php endif ?>
-                                        <td class="manage-column">
-                                        <button onclick="window.location.href='<?= BASE_URL ?>account/config/delete_user.php?id=<?= $id ?>'" type="button" class="btn btn-primary"><i class="bi bi-trash"></i></button>
+                                        <td <?= $is_active == 1 ? '' : 'style="color: red;"' ?>><?= $is_active == 1 ? 'Active' : 'Inactive' ?></td>
+                                        <td class="manage-column text-center">
+                                        <button onclick="return confirm('Are you sure you want to delete this user?') ? window.location.href='<?= BASE_URL ?>account/config/delete_user.php?id=<?= $id ?>' : false;" type="button" class="btn btn-primary"><i class="bi bi-trash"></i></button>
                                             <button onclick="window.location.href='<?= BASE_URL ?>edituser/<?= $id ?>'" type="button" class="btn btn-success"><i class="bi bi-pen"></i></button>
                                             <?php if ($is_active == 1) : ?>
                                                 <button onclick="window.location.href='<?= BASE_URL ?>inactive/<?= $id ?>'" class="btn btn-danger"><i class="bi bi-person-dash"></i></button>
@@ -102,5 +105,4 @@ if (isset($_SESSION['error_message'])) {
         </section>
     </div>
 
-
-    <?php include '../../../partials/footer.php'; ?>
+<?php include '../../../partials/footer.php'; ?>

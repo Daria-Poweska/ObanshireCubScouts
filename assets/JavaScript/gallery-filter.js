@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Initialize with all items displayed
   filterSelection("*");
 
   filterItems.forEach(function (btn) {
