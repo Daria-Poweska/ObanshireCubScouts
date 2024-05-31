@@ -11,7 +11,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 $uid = $_GET['user_id'];
 
-// Prepare and execute the SQL statement to deactivate the user
+// Preparing and execute the SQL statement to deactivate the user
 $stmt = $conn->prepare('UPDATE users SET is_active = 0 WHERE user_id = ?');
 $stmt->bind_param('i', $uid);
 
@@ -23,7 +23,7 @@ if ($stmt->execute()) {
 
 $stmt->close();
 
-// Redirect back to the leaderusers page
+// Redirecting back to the leaderusers page
 header("Location: " . BASE_URL . "leaderusers");
 exit();
 ?>

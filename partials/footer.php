@@ -102,6 +102,7 @@
 <!-- Custom JS -->
 <script src="<?= BASE_URL ?>./assets/JavaScript/gallery-filter.js"></script>
 <script src="<?= BASE_URL ?>./assets/JavaScript/badge-search.js"></script>
+<script src="<?= BASE_URL ?>./assets/JavaScript/edit-event.js"></script>
 <script src="<?= BASE_URL ?>./assets/JavaScript/confirmation.js"></script>
 
 <script src="<?= BASE_URL ?>javascript"></script>

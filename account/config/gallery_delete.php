@@ -1,3 +1,5 @@
+<!-- Gallery Update -->
+
 <?php
 include '../../account/config/config.php';
 session_start();

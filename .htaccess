@@ -47,8 +47,10 @@
     # Config
 
     RewriteRule ^approvepicture$ /ObanshireCubScouts/account/config/approve_picture.php [L]
+    RewriteRule ^editevent$ /ObanshireCubScouts/account/config/edit_event.php [L]
     RewriteRule ^addevent$ /ObanshireCubScouts/account/config/add_event.php [L]
     RewriteRule ^deletepicture$ /ObanshireCubScouts/account/config/delete_picture.php [L]
+    RewriteRule ^deleteevent$ /ObanshireCubScouts/account/config/delete_event.php [L]
     RewriteRule ^active/([0-9]+)$ /ObanshireCubScouts/account/config/active_user.php?user_id=$1 [L]
     RewriteRule ^inactive/([0-9]+)$ /ObanshireCubScouts/account/config/inactive_user.php?user_id=$1 [L]
     RewriteRule ^deleteuser/([0-9]+)$ /ObanshireCubScouts/account/config/delete_user.php?user_id=$1 [L]

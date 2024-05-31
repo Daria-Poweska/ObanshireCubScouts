@@ -1,3 +1,5 @@
+<!-- Adding Events -->
+
 <?php
 include '../../../account/config/config.php';
 session_start();
@@ -38,7 +40,7 @@ include '../../../partials/navbarforlogged.php';
         <div class="card no-hover">
           <div class="card-body">
             <div class="container my-4">
-              <h2>Add New Event</h2>
+              <h5 class="card-title no-hove">Add New Event</h5>
               <form action="<?= BASE_URL ?>account/config/add_event.php" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                   <label for="title" class="form-label">Event Title</label>
@@ -64,7 +66,7 @@ include '../../../partials/navbarforlogged.php';
                   <label for="image" class="form-label">Event Image</label>
                   <input type="file" class="form-control" id="image" name="image" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Event</button>
+                <button type="submit" class="btn-join-us-square event">Add Event</button>
               </form>
             </div>
           </div>

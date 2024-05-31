@@ -101,7 +101,6 @@ if (isset($_GET['id'])) {
         $_SESSION['success_message'] = 'User deleted successfully.';
 
     } catch (Exception $e) {
-        // Rollback the transaction
         $conn->rollback();
         $_SESSION['error_message'] = 'Failed to delete user: ' . $e->getMessage();
     }

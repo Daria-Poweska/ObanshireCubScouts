@@ -1,4 +1,4 @@
-// Confirmation
+// Confirmation message
 
 function confirmAction(event, message) {
       if (!confirm(message)) {

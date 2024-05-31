@@ -16,34 +16,36 @@
 /* Colours */
 
 :root {
-  --color-default: #2321ac;
-  --color-fontwhite: #ffffff;
-  --color-font: #432616;
-  --color-buttons: #8905d1;
-  --color-secondary: #ff9306;
-  --color-fontlight: #f9ebcd;
-  --color-fontshadow: #f4d7c7;
-  --color-input: #e5e5e5;
-  --color-bar: #ff5607;
-  --color-h1: #530092;
-  --color-border: #e5e5e5;
+  --colour-default: #2321ac;
+  --colour-fontwhite: #ffffff;
+  --colour-font: #432616;
+  --colour-buttons: #8905d1;
+  --colour-secondary: #ff9306;
+  --colour-fontlight: #f9ebcd;
+  --colour-fontshadow: #f4d7c7;
+  --colour-input: #e5e5e5;
+  --colour-bar: #ff5607;
+  --colour-h1: #530092;
+  --colour-border: #e5e5e5;
+  --colour-table: #808080;
+
 }
 
 /* General CSS */
 
 body {
   font-family: var(--font-body);
-  color: var(--color-font);
+  color: var(--colour-font);
 }
 
 a {
-  color: var(--color-h1);
+  color: var(--colour-h1);
   text-decoration: none;
   transition: 0.3s;
 }
 
 a:hover {
-  color: var(--color-secondary);
+  color: var(--colour-secondary);
 }
 
 h1,
@@ -58,11 +60,11 @@ h6 {
 /* Section Header */
 
 h2 {
-  color: var(--color-h1);
+  color: var(--colour-h1);
 }
 
 .text-center {
-  color: var(--color-h1);
+  color: var(--colour-h1);
 }
 
 .section {
@@ -89,7 +91,7 @@ h2 {
   display: block;
   width: 60px;
   height: 2px;
-  background: var(--color-fontlight);
+  background: var(--colour-fontlight);
   left: 0;
   right: 0;
   bottom: 0;
@@ -248,7 +250,7 @@ h2 {
     padding: 10px 20px;
     font-size: 15px;
     text-transform: none;
-    color: var(--color-secondary);
+    color: var(--colour-secondary);
   }
 
   .navbar .dropdown ul a i {
@@ -258,7 +260,7 @@ h2 {
   .navbar .dropdown ul a:hover,
   .navbar .dropdown ul .active:hover,
   .navbar .dropdown ul li:hover > a {
-    color: var(--color-primary);
+    color: var(--colour-primary);
   }
 
   .navbar .dropdown:hover > ul {
@@ -317,7 +319,7 @@ h2 {
     inset: 0;
     padding: 50px 0 10px 0;
     margin: 0;
-    background: var(--color-default);
+    background: var(--colour-default);
     overflow-y: auto;
     transition: 0.3s;
     z-index: 9998;
@@ -357,7 +359,7 @@ h2 {
     display: none;
     padding: 10px 0;
     margin: 10px 20px;
-    background-color: var(--color-default);
+    background-color: var(--colour-default);
   }
 
   .navbar .dropdown > .dropdown-active,
@@ -402,7 +404,7 @@ h2 {
   }
 
   .bottom-bar h3 {
-    font-size: 13px !important;
+    font-size: 11px !important;
     padding: 8px;
   }
 }
@@ -447,7 +449,7 @@ h2 {
   position: absolute;
   content: "";
   width: 40%;
-  background: var(--color-default);
+  background: var(--colour-default);
   top: 0;
   bottom: 0;
   left: 0;
@@ -485,14 +487,14 @@ h2 {
   font-size: 48px;
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-fontlight);
+  color: var(--colour-fontlight);
 }
 
 .hero blockquote {
-  color: var(--color-fontlight);
+  color: var(--colour-fontlight);
   padding-left: 20px;
   font-size: 15px;
-  border-left: 2px solid var(--color-fontlight);
+  border-left: 2px solid var(--colour-fontlight);
   margin: 40px 0;
 }
 
@@ -506,32 +508,32 @@ h2 {
   padding: 12px 30px;
   border-radius: 50px;
   transition: 0.5s;
-  color: var(--color-fontlight);
+  color: var(--colour-fontlight);
   flex: 1;
   text-align: center;
   margin: 4px;
 }
 
 .hero .btn-container .btn-learn-more {
-  background: var(--color-buttons);
+  background: var(--colour-buttons);
 }
 
 .hero .btn-container .btn-join-us {
-  background: var(--color-fontwhite);
-  color: var(--color-font);
+  background: var(--colour-fontwhite);
+  color: var(--colour-font);
 }
 
 .hero .btn-container .btn-learn-more:hover,
 .hero .btn-container .btn-join-us:hover {
-  background: var(--color-secondary);
+  background: var(--colour-secondary);
 }
 
 .hero .btn-container .btn-join-us:hover {
-  color: var(--color-font);
+  color: var(--colour-font);
 }
 
 .btn-join-us:hover {
-  background: var(--color-secondary);
+  background: var(--colour-secondary);
 }
 
 /* Hide video on mobile */
@@ -544,7 +546,7 @@ h2 {
   .hero {
     width: 100%;
     min-height: 100vh;
-    background: url("../Images/hero1.jpg") top center;
+    background: url("../Images/Gallery/hero1.jpg") top center;
     background-size: cover;
     padding: 120px 0;
     z-index: 3;
@@ -636,14 +638,14 @@ h2 {
   padding: 12px 30px;
   border-radius: 50px;
   transition: 0.5s;
-  color: var(--color-fontwhite);
-  background: var(--color-buttons);
+  color: var(--colour-fontwhite);
+  background: var(--colour-buttons);
   margin-right: 10px;
   margin-top: 10px !important;
 }
 
 .aboutus .content .read-more:hover {
-  background: var(--color-secondary) !important;
+  background: var(--colour-secondary) !important;
 }
 
 .aboutus .content .read-more i {
@@ -686,6 +688,7 @@ h2 {
   padding: 5px 40px;
   width: fit-content;
   align-self: center;
+  width: max-contenty;
 }
 
 @media (max-width: 991px) {
@@ -704,9 +707,7 @@ h2 {
   }
 }
 
-.btn-join-us-square {
-  margin-top: auto;
-}
+
 
 /* Section Title */
 
@@ -726,6 +727,11 @@ h2 {
   z-index: 2;
 }
 
+.content {
+  display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
 .title-event {
   font-size: 20px !important;
   font-weight: 700;
@@ -739,17 +745,17 @@ h2 {
 
 
 .btn-join-us-square.event {
-  background: var(--color-buttons);
+  background: var(--colour-buttons);
   font-family: var(--font-robotoflex);
   font-weight: 600;
   font-size: 15px;
   border-radius: 5px;
   letter-spacing: 1px;
   display: inline-block;
-  padding: 10px 40px;
+  padding: 10px 34px;
   transition: 0.5s;
-  color: var(--color-fontwhite);
-  flex: 1;
+  color: var(--colour-fontwhite);
+
   text-align: center;
   margin: 4px;
   border: none;
@@ -757,13 +763,13 @@ h2 {
 }
 
 .date {
-  color: var(--color-secondary);
+  color: var(--colour-secondary);
 }
 
 .section-title span {
   position: absolute;
   top: 4px;
-  color: var(--color-fontshadow);
+  color: var(--colour-fontshadow);
   left: 0;
   right: 0;
   z-index: 1;
@@ -801,7 +807,7 @@ h2 {
 }
 
 .filter-item {
-  color: var(--color-secondary);
+  color: var(--colour-secondary);
   cursor: pointer;
   display: inline-block;
   font-size: 18px;
@@ -811,7 +817,7 @@ h2 {
 }
 
 .filter-item.active {
-  color: var(--color-font);
+  color: var(--colour-font);
 }
 
 .gallery .gallery-item {
@@ -819,14 +825,14 @@ h2 {
 }
 
 .gallery-item img {
-  height: 300px; /* Set this to your desired height */
-  object-fit: cover; /* This ensures the image covers the specified height */
+  height: 300px; 
+  object-fit: cover; 
   width: 100%;
   display: block;
 }
 
 .gallery-item {
-  margin-bottom: 20px; /* Adjust as necessary to space out your items */
+  margin-bottom: 20px; 
 }
 
 
@@ -845,7 +851,7 @@ h2 {
 .gallery .gallery-item .gallery-info h4 {
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-default);
+  color: var(--colour-default);
   padding-right: 50px;
 }
 
@@ -869,7 +875,7 @@ h2 {
 
 .gallery .gallery-item .gallery-info .preview-link:hover,
 .gallery .gallery-item .gallery-info .details-link:hover {
-  color: var(--color-primary);
+  color: var(--colour-primary);
 }
 
 .gallery .gallery-item .gallery-info .details-link {
@@ -921,7 +927,7 @@ h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--color-bar);
+  background-color: var(--colour-bar);
   color: white;
   padding: 10px 0;
   z-index: 1;
@@ -955,31 +961,31 @@ h2 {
 
 .footer {
   font-size: 14px;
-  background-color: var(--color-default);
+  background-color: var(--colour-default);
 }
 
 .footer a:hover,
 .footer .btn-outline-light:hover,
 .footer a.text-white:hover {
-  color: var(--color-secondary) !important;
+  color: var(--colour-secondary) !important;
 }
 
 .footer .btn-outline-light:hover {
-  background-color: var(--color-secondary) !important;
-  border-color: var(--color-secondary) !important;
+  background-color: var(--colour-secondary) !important;
+  border-color: var(--colour-secondary) !important;
   color: #fff !important;
 }
 
 /* LOGIN/REGISTER */
 
 .btnlogin {
-  background-color: var(--color-buttons);
-  color: var(--color-fontwhite);
+  background-color: var(--colour-buttons);
+  color: var(--colour-fontwhite);
 }
 
 .btnlogin:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-fontwhite);
+  background-color: var(--colour-secondary);
+  color: var(--colour-fontwhite);
 }
 
 .error-message {
@@ -1001,11 +1007,11 @@ h2 {
 
 .contact-us .info i {
   font-size: 20px;
-  color: var(--color-font);
+  color: var(--colour-font);
   float: left;
   width: 44px;
   height: 44px;
-  background: var(--color-fontlight);
+  background: var(--colour-fontlight);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1018,14 +1024,14 @@ h2 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 5px;
-  color: var(--color-font);
+  color: var(--colour-font);
 }
 
 .contact-us .info p {
   padding: 0 0 0 60px;
   margin-bottom: 0;
   font-size: 19px;
-  color: var(--color-default);
+  color: var(--colour-default);
 }
 
 .contact-us .info .email,
@@ -1036,7 +1042,7 @@ h2 {
 .contact-us .info .email:hover i,
 .contact-us .info .address:hover i,
 .contact-us .info .phone:hover i {
-  background: var(--color-secondary);
+  background: var(--colour-secondary);
   color: #ffff;
 }
 
@@ -1049,7 +1055,7 @@ h2 {
 
 .contact-us .email-form input:focus,
 .contact-us .email-form textarea:focus {
-  border-color: var(--color-secondary);
+  border-color: var(--colour-secondary);
 }
 
 .contact-us .email-form input {
@@ -1061,17 +1067,17 @@ h2 {
 }
 
 .contact-us .email-form button[type="submit"] {
-  background: var(--color-buttons);
+  background: var(--colour-buttons);
   margin-top: 10px;
   padding: 10px 30px;
-  color: var(--color-fontlight);
+  color: var(--colour-fontlight);
   transition: 0.4s;
   border-radius: 4px;
   border: none;
 }
 
 .contact-us .email-form button[type="submit"]:hover {
-  background: var(--color-secondary);
+  background: var(--colour-secondary);
 }
 
 /* Badges */
@@ -1136,8 +1142,8 @@ div[class^="col-"] {
 }
 
 .card.no-hover {
-  transform: none;
- box-shadow: none;
+  transform: none !important; 
+ box-shadow: none !important;
 }
 
 .card-title.no-hover:hover {
@@ -1160,7 +1166,7 @@ div[class^="col-"] {
 
 .section.training .cards {
   display: flex;
-  background-color: var(--color-fontwhite);
+  background-color: var(--colour-fontwhite);
   color: var(--default-color);
   padding: 40px;
   margin: -1px;
@@ -1168,7 +1174,7 @@ div[class^="col-"] {
 }
 
 .section.training .cards h4 {
-  color: var(--color-default);
+  color: var(--colour-default);
   font-size: 24px;
   font-weight: 600;
   padding: 8px;
@@ -1176,7 +1182,7 @@ div[class^="col-"] {
 }
 
 .section.training .cards p {
-  color: rgba(var(--color-default), 0.6);
+  color: rgba(var(--colour-default), 0.6);
   font-size: 15px;
   margin: 8px;
   padding: 0;
@@ -1217,7 +1223,9 @@ div[class^="col-"] {
 }
 
 /* Helpers */
-
+.form-label {
+  font-size: 14px;
+}
 .availability-container .form-check-helper {
   display: inline-block !important;
   margin-right: 10px;
@@ -1269,7 +1277,7 @@ table th {
 }
 
 .form-control {
-  background-color: var(--color-input);
+  background-color: var(--colour-input);
 }
 
 .section.dashboard {
@@ -1309,7 +1317,7 @@ table th {
 /* Upload Images */
 
 .uploadgallery {
-  background-color: var(--color-fontwhite);
+  background-color: var(--colour-fontwhite);
   margin-top: 30px;
   padding: 30px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -1321,7 +1329,7 @@ table th {
 }
 
 .btn-join-us-square {
-  background: var(--color-buttons);
+  background: var(--colour-buttons);
   font-family: var(--font-robotoflex);
   font-weight: 600;
   font-size: 15px;
@@ -1330,23 +1338,29 @@ table th {
   display: inline-block;
   padding: 10px 40px;
   transition: 0.5s;
-  color: var(--color-fontwhite);
-  flex: 1;
+  color: var(--colour-fontwhite);
+
   text-align: center;
   margin: 4px;
   border: none;
 
 }
 
+.read-more-container {
+  display: flex;
+  gap: 10px; 
+}
+
+
 button.btn-join-us-square.delete {
-  background: var(--color-bar) !important;
+  background: var(--colour-bar) !important;
 }
 button.btn-join-us-square.delete:hover {
-  background: var(--color-font) !important;
+  background: var(--colour-font) !important;
 }
 
 .btn-join-us-square.login {
-  background: var(--color-buttons);
+  background: var(--colour-buttons);
   width: 100%;
   margin: 0;
 }
@@ -1355,8 +1369,8 @@ button.btn-join-us-square.delete:hover {
 }
 
 .button-link a {
-  background-color: var(--color-buttons);
-  color: var(--color-fontwhite);
+  background-color: var(--colour-buttons);
+  color: var(--colour-fontwhite);
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
@@ -1367,13 +1381,13 @@ button.btn-join-us-square.delete:hover {
 }
 
 .button-link a:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-fontwhite);
+  background-color: var(--colour-secondary);
+  color: var(--colour-fontwhite);
 }
 
 .button-link a {
-  background-color: var(--color-buttons);
-  color: var(--color-fontwhite);
+  background-color: var(--colour-buttons);
+  color: var(--colour-fontwhite);
   padding: 10px 20px;
   border-radius: 5px;
   text-decoration: none;
@@ -1384,8 +1398,8 @@ button.btn-join-us-square.delete:hover {
 }
 
 .button-link a:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-fontwhite);
+  background-color: var(--colour-secondary);
+  color: var(--colour-fontwhite);
 }
 
 .button-link-wrapper {
@@ -1400,12 +1414,12 @@ button.btn-join-us-square.delete:hover {
 }
 
 .btn-join-us-square:hover {
-  background: var(--color-secondary) !important;
-  color: var(--color-fontwhite) !important;
+  background: var(--colour-secondary) !important;
+  color: var(--colour-fontwhite) !important;
 }
 .btn-join-us-square.events:hover {
-  background: var(--color-secondary) !important;
-  color: var(--color-fontwhite) !important;
+  background: var(--colour-secondary) !important;
+  color: var(--colour-fontwhite) !important;
 }
 
 /* Users */
@@ -1419,6 +1433,8 @@ button.btn-join-us-square.delete:hover {
 
 .table td {
   word-wrap: break-word;
+  font-size: 14px;
+  color: var(--colour-table);
 }
 
 /* Games */
@@ -1457,16 +1473,14 @@ button.btn-join-us-square.delete:hover {
 }
 
 .read-more {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
- align-items: center;
- align-self: flex-start; 
- margin-top: auto;
+  margin-top: auto;
+ align-self: flex-end;
+
+
 }
 
 .read-more a.btn-join-us-square.events {
-  background: var(--color-buttons);
+  background: var(--colour-buttons);
   font-family: var(--font-robotoflex);
   font-weight: 600;
   font-size: 15px;
@@ -1475,7 +1489,7 @@ button.btn-join-us-square.delete:hover {
   display: inline-block;
   padding: 10px 40px;
   transition: 0.5s;
-  color: var(--color-fontwhite);
+  color: var(--colour-fontwhite);
   flex: 1;
   text-align: center;
   margin: 4px;
@@ -1493,7 +1507,6 @@ button.btn-join-us-square.delete:hover {
 .card-img-top-games {
   max-width: 100%;
   height: auto;
-  object-fit: none;
 }
 
 .card-body-games {
@@ -1514,25 +1527,7 @@ button.btn-join-us-square.delete:hover {
   }
 }
 
-.cstm-height-card .card-img-top {
-  height: 100px;
-  object-fit: cover;
-}
 
-.row-equal {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.row-equal > .col-md-4 {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.row-equal > .col-md-4:last-child {
-  flex: 2;
-}
 
 .card-img-top {
   height: 200px;
@@ -1550,7 +1545,6 @@ button.btn-join-us-square.delete:hover {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
   border: none;
   transition: 0.5s;
@@ -1561,9 +1555,17 @@ button.btn-join-us-square.delete:hover {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: space-between;
+
+}
+.content {
+  flex-grow: 1;
 }
 
+.read-more-container {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
 .modal-lg {
   max-width: 800px;
 }
@@ -1580,12 +1582,12 @@ button.btn-join-us-square.delete:hover {
 /* Volunteer */
 
 .volunteer {
-  color: var(--color-fontwhite);
+  color: var(--colour-fontwhite);
 }
 
 /* Carousel */
 
 .text-center-carousel {
   text-align: center;
-  color: var(--color-font);
+  color: var(--colour-font);
 }
