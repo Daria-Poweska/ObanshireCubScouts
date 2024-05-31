@@ -1,3 +1,4 @@
+<!-- Images -->
 
   <?php
   include '../../../account/config/config.php';

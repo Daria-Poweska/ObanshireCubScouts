@@ -36,13 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           // Redirecting based on user type
           switch ($user_type) {
             case 'leader':
-              header('Location: ' . BASE_URL . 'leaderindex');
+              header('Location: ' . BASE_URL . 'index');
               exit();
             case 'helper':
-              header('Location: ' . BASE_URL . 'helperindex');
+              header('Location: ' . BASE_URL . 'index');
               exit();
             case 'cub':
-              header('Location: ' . BASE_URL . 'scoutindex');
+              header('Location: ' . BASE_URL . 'index');
               exit();
             default:
               // If the user type is unknown, showing an error

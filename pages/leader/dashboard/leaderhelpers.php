@@ -1,3 +1,5 @@
+<!-- Helpers -->
+
 <?php
 include '../../../account/config/config.php';
 session_start();
@@ -24,6 +26,7 @@ include '../../../partials/navbarforlogged.php';
                                 </thead>
                                 <tbody>
                                     <?php
+                                    // Querying to get helper details and availability
                                     $query = "SELECT u.user_id, CONCAT(u.name, ' ', u.surname) AS helper_name, 
                                                      hd.disclosure_number, a.availability_day, a.availability_time
                                               FROM users u
@@ -33,10 +36,15 @@ include '../../../partials/navbarforlogged.php';
                                               ORDER BY u.user_id, a.availability_day, a.availability_time";
                                     $result = $conn->query($query);
                                     
+                                    // Initializing an array to hold helper details
                                     $helpers = [];
+                                    
+                                    // Fetching query results and organize data
                                     if ($result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             $userId = $row['user_id'];
+                                            
+                                            // Checking if the helper is already in the array
                                             if (!isset($helpers[$userId])) {
                                                 $helpers[$userId] = [
                                                     'helper_name' => $row['helper_name'],
@@ -44,24 +52,31 @@ include '../../../partials/navbarforlogged.php';
                                                     'availability' => []
                                                 ];
                                             }
+                                            
+                                            // Adding availability to the helper's array
                                             if (!empty($row['availability_day']) && !empty($row['availability_time'])) {
                                                 $helpers[$userId]['availability'][] = $row['availability_day'] . ' ' . $row['availability_time'];
                                             }
                                         }
                                     }
                                     
+                                    // Displaying helper details in the table
                                     foreach ($helpers as $helper) {
                                         echo "<tr>";
                                         echo "<td>{$helper['helper_name']}</td>";
+                                        
+                                        // Displaying availability or a message if not set
                                         if (!empty($helper['availability'])) {
                                             echo "<td>" . implode('<br>', $helper['availability']) . "</td>";
                                         } else {
                                             echo "<td class='text-primary'>Helper didn't set the availability</td>";
                                         }
+                                        
                                         echo "<td>{$helper['disclosure_number']}</td>";
                                         echo "</tr>";
                                     }
 
+                                    // Displaying a message if no helpers are found
                                     if (empty($helpers)) {
                                         echo "<tr><td colspan='3'>No helpers found</td></tr>";
                                     }

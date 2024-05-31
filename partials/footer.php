@@ -1,12 +1,9 @@
 <div class="icon-container">
 <p class="cub-scouts-overview"><img src="<?= BASE_URL ?>icon" alt="scouts icon" class="icon middle"></div>
 </main>
+
 <!-- ======= Footer ======= -->
-
-
  
-  
-  
 <footer class="footer text-center text-white">
   <div class="container pb-0">
   <section class="mt-5">

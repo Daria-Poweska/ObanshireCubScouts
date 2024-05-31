@@ -7,7 +7,7 @@ include '../partials/navigation.php';
 ?>
 
 <main class="aboutmain">
-  <div class="top d-flex align-items-center" style="background-image: url('assets/Images/login.jpg');">
+  <div class="top d-flex align-items-center" style="background-image: url('assets/Images/Gallery/login.jpg');">
     <div class="container position-relative d-flex flex-column align-items-center">
     <h2 class="top-heading">Becoming a Helper</h2>
     </div>

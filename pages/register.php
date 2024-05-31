@@ -90,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="pt-4 pb-2">
                   <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
                   <p class="text-center small">Enter your personal details to create an account</p>
+                  <!-- Error/Success message -->
                   <?php
                   if (isset($_SESSION["error_message"])) {
                     $error = $_SESSION["error_message"];
@@ -126,6 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <input type="password" name="password" class="form-control" id="yourPassword" required>
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>
+                    <!-- Disclosure -->
                     <div class="col-12">
                       <label for="userType" class="form-label">Who are you?</label>
                       <select class="form-select" id="userType" name="userType" required onchange="toggleDisclosureNumber()">

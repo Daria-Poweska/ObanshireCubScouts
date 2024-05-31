@@ -19,7 +19,6 @@
 
     # Leader
 
-    RewriteRule ^leaderindex$ /ObanshireCubScouts/pages/leader/leaderindex.php [L]
     RewriteRule ^leaderusers$ /ObanshireCubScouts/pages/leader/dashboard/leaderusers.php [L]
     RewriteRule ^leaderimages$ /ObanshireCubScouts/pages/leader/dashboard/leaderimages.php [L]
     RewriteRule ^leaderbadges$ /ObanshireCubScouts/pages/leader/dashboard/leaderbadges.php [L]
@@ -30,12 +29,10 @@
    
     # Scouts
 
-    RewriteRule ^scoutindex$ /ObanshireCubScouts/pages/scouts/scoutindex.php [L]
     RewriteRule ^scoutbadges$ /ObanshireCubScouts/pages/scouts/scoutbadges.php [L]
    
     # Helpers
 
-    RewriteRule ^helperindex$ /ObanshireCubScouts/pages/helper/helperindex.php [L]
     RewriteRule ^helperdashboard$ /ObanshireCubScouts/pages/helper/helperdashboard.php [L]
     RewriteRule ^training$ /ObanshireCubScouts/pages/helper/training.php [L]
     RewriteRule ^helpercubprogress$ /ObanshireCubScouts/pages/helper/helpercubprogress.php [L]

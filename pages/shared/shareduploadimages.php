@@ -9,7 +9,7 @@ include '../../partials/navbarforlogged.php';
 // Checking user authorization
 if ($_SESSION['user_type'] !== 'helper' && $_SESSION['user_type'] !== 'cub') {
     $_SESSION['error_message'] = 'You are not authorized to access this page.';
-    header("Location: " . BASE_URL . "helperindex");
+    header("Location: " . BASE_URL . "index");
     exit();
 }
 

@@ -1,3 +1,5 @@
+<!-- Header -->
+
 <?php
 session_start();
 
@@ -45,10 +47,7 @@ if (isset($_SESSION['error_message'])) {
     <!-- Header -->
 
     <header class=" header d-flex align-items-center fixed-top " id="header">
-        
-        
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-            
             <a href="<?= BASE_URL ?>index" class="logo d-flex align-items-center">
             <img src="<?= BASE_URL ?>logo" alt="logo">
             </a>

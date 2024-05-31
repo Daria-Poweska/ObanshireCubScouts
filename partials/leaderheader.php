@@ -1,3 +1,5 @@
+<!-- Leader Header -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +31,6 @@
 <body>
 
     <!-- Header -->
-
     <header id="header" class="header d-flex align-items-center fixed-top leader-header">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="<?= BASE_URL ?>index" class="logo d-flex align-items-center">

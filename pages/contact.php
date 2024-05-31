@@ -8,7 +8,7 @@ include '../partials/navigation.php';
 
 <main class="aboutmain">
 
-    <div class="top d-flex align-items-center" style="background-image: url('assets/Images/contact1.jpg');">
+    <div class="top d-flex align-items-center" style="background-image: url('assets/Images/Gallery/contact1.jpg');">
         <div class="container position-relative d-flex flex-column align-items-center">
             <h2>Contact Us</h2>
         </div>

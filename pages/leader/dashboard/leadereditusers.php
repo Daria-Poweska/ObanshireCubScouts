@@ -3,7 +3,6 @@
 <?php
 include '../../../account/config/config.php';
 session_start();
-
 unset($_SESSION['success_message']);
 $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
 
@@ -12,7 +11,7 @@ if ($user_id === null) {
     exit();
 }
 
-// Retrieve user details from the database based on user_id
+// Retrieving user details from the database based on user_id
 $stmt = $conn->prepare('SELECT username, name, surname, email FROM users WHERE user_id = ?');
 $stmt->bind_param('i', $user_id);
 $stmt->execute();
@@ -20,15 +19,14 @@ $stmt->bind_result($username, $name, $surname, $email);
 $stmt->fetch();
 $stmt->close();
 
-// Check if the form was submitted to update user details
+// Checking if the form was submitted to update user details
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
     $username = $_POST['username'];
     $name = $_POST['name'];
     $surname = $_POST['surname'];
     $email = $_POST['email'];
 
-    // Update user details in the database
+    // Updating user details in the database
     $updateUser = $conn->prepare('UPDATE users SET username = ?, name = ?, surname = ?, email = ? WHERE user_id = ?');
     $updateUser->bind_param('ssssi', $username, $name, $surname, $email, $user_id);
     if ($updateUser->execute() && $updateUser->affected_rows > 0) {
