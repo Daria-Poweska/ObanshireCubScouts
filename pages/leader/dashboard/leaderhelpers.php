@@ -22,13 +22,15 @@ include '../../../partials/navbarforlogged.php';
                                         <th>Helper Name</th>
                                         <th>Availability</th>
                                         <th>Disclosure Number</th>
+                                        <th>Training</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    // Querying to get helper details and availability
+                                    // Querying to get helper details, availability, and training
                                     $query = "SELECT u.user_id, CONCAT(u.name, ' ', u.surname) AS helper_name, 
-                                                     hd.disclosure_number, a.availability_day, a.availability_time
+                                                     hd.disclosure_number, a.availability_day, a.availability_time, 
+                                                     hd.training_name
                                               FROM users u
                                               LEFT JOIN helperdetails hd ON u.user_id = hd.user_id
                                               LEFT JOIN availability a ON u.user_id = a.user_id
@@ -49,6 +51,7 @@ include '../../../partials/navbarforlogged.php';
                                                 $helpers[$userId] = [
                                                     'helper_name' => $row['helper_name'],
                                                     'disclosure_number' => $row['disclosure_number'] ? $row['disclosure_number'] : '<span class="text-danger">Disclosure not obtained</span>',
+                                                    'training_name' => $row['training_name'] ? $row['training_name'] : '<span class="text-danger">Training not obtained</span>',
                                                     'availability' => []
                                                 ];
                                             }
@@ -73,12 +76,13 @@ include '../../../partials/navbarforlogged.php';
                                         }
                                         
                                         echo "<td>{$helper['disclosure_number']}</td>";
+                                        echo "<td>{$helper['training_name']}</td>";
                                         echo "</tr>";
                                     }
 
                                     // Displaying a message if no helpers are found
                                     if (empty($helpers)) {
-                                        echo "<tr><td colspan='3'>No helpers found</td></tr>";
+                                        echo "<tr><td colspan='4'>No helpers found</td></tr>";
                                     }
                                     ?>
                                 </tbody>
